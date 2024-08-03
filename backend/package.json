@@ -1,6 +1,22 @@
 {
+  "scripts": {
+    "start": "ts-node src/routes/index.ts",
+    "dev": "ts-node-dev src/routes/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
-    "sequelize": "^6.37.3"
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0",
+    "pg": "^8.12.0",
+    "sequelize": "^6.37.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21"
   }
 }

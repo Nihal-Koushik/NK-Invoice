@@ -1,39 +1,29 @@
 import sequelize from '../db';
 import { Model, DataTypes } from 'sequelize';
 
-class bankDetails extends Model {
+class userClientRelations extends Model {
     public id!: number;
-    public accountNumber!: number;
-    public ifsc!: string;
-    public bankName!: string;
     public userId!: number;
+    public clientId!: number;
 
     static associate(models: any) {
-        bankDetails.belongsTo(models.User, {
+        userClientRelations.belongsTo(models.User, {
             foreignKey: 'userId',
             as: 'user',
+        });
+        userClientRelations.belongsTo(models.Client, {
+            foreignKey: 'clientId',
+            as: 'client',
         });
     }
 }
 
-bankDetails.init(
+userClientRelations.init(
     {
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
             primaryKey: true,
-        },
-        accountNumber: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-        },
-        ifsc: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        bankName: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         userId: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -41,13 +31,21 @@ bankDetails.init(
             references: {
                 model: 'users',
                 key: 'id',
-            },
+            }
+        },
+        clientId: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+            references: {
+                model: 'clients',
+                key: 'id',
+            }
         },
     },
     {
         sequelize,
-        tableName: 'bankDetails',
+        tableName: 'userClientRelations',
         timestamps: true,
     }
 );
-export default bankDetails;
+export default userClientRelations;
