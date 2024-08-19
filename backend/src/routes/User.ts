@@ -3,16 +3,24 @@ import express, { Request, Response } from "express";
 
 const router = express.Router();
 
-router.get("/", async (req: Request, res: Response) => {
-  //const token = req.headers.authorization?.replace('Bearer ', '') || '';
-  //const userId = getUserIdFromToken(token);
-
-  // if (!userId) {
-  //     return res.status(401).json({ error: 'Unauthorized' });
-  // }
-  const users = await User.findAll();
-  // res.json(users);
-  res.status(201).json(users);
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    const users = await User.findAll();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+router.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 router.post("/", async (req: Request, res: Response) => {
@@ -34,27 +42,53 @@ router.post("/", async (req: Request, res: Response) => {
   }
 });
 
-router.put("/", async (req: Request, res: Response) => {
-  // const { id } = req.params;
-  // const token = req.headers.authorization?.replace('Bearer ', '') || '';
-  // const userId = getUserIdFromToken(token);
-  // if (!userId) {
-  //     return res.status(401).json({ error: 'Unauthorized' });
-  // }
-  // const { title, completed } = req.body;
-  // await Todo.update({ title, completed }, { where: { id: id, userId: userId } });
-  // res.json({ message: 'Todo updated successfully' });
+
+
+router.put("/:id", async (req: Request, res: Response) => {
+  const { id } = req.params; // Get the user ID from the URL parameter
+  const { username, password, email, mobileNumber } = req.body; // Get updated user data
+
+  try {
+    // Find the user by ID
+    const user = await User.findByPk(id);
+
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Update user data
+    user.username = username;
+    user.password = password; // Consider hashing password before storing
+    user.email = email;
+    user.mobileNumber = mobileNumber;
+
+    // Save the updated user
+    await user.save();
+
+    // Send successful response with updated user data
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
-router.delete("/", async (req: Request, res: Response) => {
-  // const { id } = req.params;
-  // const token = req.headers.authorization?.replace('Bearer ', '') || '';
-  // const userId = getUserIdFromToken(token);
-  // if (!userId) {
-  //     return res.status(401).json({ error: 'Unauthorized' });
-  // }
-  // await Todo.destroy({ where: { id: id, userId: userId } });
-  // res.json({ message: 'Todo deleted successfully' });
+router.delete('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const deletedUser = await User.destroy({ where: { id } });
+
+    if (deletedUser) {
+      res.status(204).send(); // No content response
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 export default router;

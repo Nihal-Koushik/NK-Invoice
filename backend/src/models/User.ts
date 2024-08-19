@@ -6,7 +6,7 @@ class User extends Model {
     public username!: string;
     public password!: string;
     public email!: string;
-    public mobileNumber!: number;
+    public mobileNumber!: string;
     public isActive!: boolean;
 }
 
@@ -30,7 +30,7 @@ User.init(
             allowNull: false,
         },
         mobileNumber: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         isActive: {
