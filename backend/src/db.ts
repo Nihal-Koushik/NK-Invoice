@@ -10,5 +10,11 @@ const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT) || 5432,
 });
-
+sequelize.authenticate()
+    .then(() => {
+        console.log("Database connection established successfully.");
+    })
+    .catch((err: Error) => {
+        console.error("Unable to connect to the database:", err);
+    });
 export default sequelize;

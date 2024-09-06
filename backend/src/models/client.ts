@@ -1,4 +1,4 @@
-import sequelize from '..\db';
+import sequelize from '../db';
 import { Model, DataTypes } from 'sequelize';
 
 class Clients extends Model {
@@ -6,14 +6,14 @@ class Clients extends Model {
     public name!: string;
     public email!: string;
     public address!: string;
-    public mobileNumber!: number;
+    public mobileNumber!: string;
     public GSTIN!: string;
 }
 
 Clients.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
@@ -30,7 +30,7 @@ Clients.init(
             allowNull: false,
         },
         mobileNumber: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         GSTIN: {

@@ -24,7 +24,7 @@ bankDetails.init(
             primaryKey: true,
         },
         accountNumber: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.BIGINT.UNSIGNED,
             allowNull: false,
         },
         ifsc: {
