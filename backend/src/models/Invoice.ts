@@ -16,7 +16,7 @@ class Invoice extends Model {
 }
 Invoice.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
@@ -29,7 +29,7 @@ Invoice.init({
         allowNull: false,
     },
     clientId: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: 'clients',

@@ -21,12 +21,12 @@ class userClientRelations extends Model {
 userClientRelations.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         userId: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'users',
@@ -34,7 +34,7 @@ userClientRelations.init(
             }
         },
         clientId: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'clients',

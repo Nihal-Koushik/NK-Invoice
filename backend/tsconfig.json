@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "commonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
     "strict": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
@@ -11,6 +12,10 @@
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "./src"

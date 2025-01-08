@@ -1,9 +1,9 @@
-import sequelize from '..\db';
+import sequelize from '../db';
 import { Model, DataTypes } from 'sequelize';
 
 
 class itemsDetails extends Model {
-    public id!: number
+    public id!: number;
     public itemsName!: string;
     public quantity!: number;
     public rate!: number;
@@ -19,30 +19,35 @@ class itemsDetails extends Model {
 
 itemsDetails.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         itemsName: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         quantity: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         rate: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         invoiceId: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'invoices',
-                key: 'id'
+                key: 'id',
             },
         },
     },
     {
         sequelize,
-        tableName: 'items',
+        tableName: 'itemsDetails',
         timestamps: true,
     }
 

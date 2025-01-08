@@ -19,12 +19,12 @@ class bankDetails extends Model {
 bankDetails.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
         accountNumber: {
-            type: DataTypes.BIGINT.UNSIGNED,
+            type: DataTypes.BIGINT,
             allowNull: false,
         },
         ifsc: {
@@ -36,7 +36,7 @@ bankDetails.init(
             allowNull: false,
         },
         userId: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'users',
