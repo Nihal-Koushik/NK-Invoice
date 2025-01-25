@@ -1,12 +1,12 @@
 import express, { NextFunction, Request, Response } from "express";
 import bodyParser from "body-parser";
-import sequelize from "../db";
-import userRoutes from "./User";
-import clientRoutes from "./client";
-import bankDetailsRoutes from "./bankDetails";
-import itemsDetailsRoutes from "./itemsDetails";
-import invoiceRoutes from "./Invoice";
-import userClientRelationsRoutes from "./userClientRelations";
+import sequelize from "./db";
+import userRoutes from "./routes/User";
+import clientRoutes from "./routes/client";
+import bankDetailsRoutes from "./routes/bankDetails";
+import itemsDetailsRoutes from "./routes/itemsDetails";
+import invoiceRoutes from "./routes/Invoice";
+import userClientRelationsRoutes from "./routes/userClientRelations";
 
 const app = express();
 
