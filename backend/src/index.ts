@@ -28,6 +28,8 @@ app.use("/bankDetails", bankDetailsRoutes);
 app.use("/itemsDetails", itemsDetailsRoutes);
 app.use("/Invoice", invoiceRoutes);
 app.use("/userClientRelations", userClientRelationsRoutes);
+
+// Server
 sequelize.sync()
   .then(() => {
     app.listen(port, () => {
