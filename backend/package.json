@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "ts-node src/routes/index.ts",
-    "dev": "ts-node-dev src/routes/index.ts",
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node-dev src/index.ts",
     "test": "jest --detectOpenHandles --forceExit"
   },
   "dependencies": {
